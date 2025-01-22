@@ -1,0 +1,51 @@
+# Classe représentant le véhicule de base
+class Vehicule:
+    def __init__(self, marque, modele, annee):
+        self.marque = marque
+        self.modele = modele
+        self.annee = annee
+
+    def afficher_info(self):
+        return f"Véhicule: {self.marque} {self.modele} ({self.annee})"
+
+# Classe représentant le moteur
+class Moteur:
+    def __init__(self, puissance, type_moteur):
+        self.puissance = puissance
+        self.type_moteur = type_moteur
+
+    def afficher_moteur(self):
+        return f"Moteur: {self.puissance} chevaux, Type: {self.type_moteur}"
+
+# Classe Voiture héritant de Vehicule et Moteur
+class Voiture(Vehicule, Moteur):
+    def __init__(self, marque, modele, annee, puissance, type_moteur, nombre_de_places):
+        Vehicule.__init__(self, marque, modele, annee)
+        Moteur.__init__(self, puissance, type_moteur)
+        self.nombre_de_places = nombre_de_places
+
+    def afficher_info(self):
+        vehicule_info = Vehicule.afficher_info(self)
+        moteur_info = Moteur.afficher_moteur(self)
+        return f"{vehicule_info}\n{moteur_info}\nNombre de places: {self.nombre_de_places}"
+
+# Classe Moto héritant de Vehicule et Moteur
+class Moto(Vehicule, Moteur):
+    def __init__(self, marque, modele, annee, puissance, type_moteur, type_moto):
+        Vehicule.__init__(self, marque, modele, annee)
+        Moteur.__init__(self, puissance, type_moteur)
+        self.type_moto = type_moto
+
+    def afficher_info(self):
+        vehicule_info = Vehicule.afficher_info(self)
+        moteur_info = Moteur.afficher_moteur(self)
+        return f"{vehicule_info}\n{moteur_info}\nType de moto: {self.type_moto}"
+
+# Créer une instance de Voiture et une instance de Moto
+voiture = Voiture("Toyota", "Yariss", 2020, 150, "Essence", 5)
+moto = Moto("Harley-Davidson", "Iron 883", 2022, 70, "Essence", "Cruiser")
+
+# Afficher les informations des véhicules
+print(voiture.afficher_info())
+print("\n")
+print(moto.afficher_info())
